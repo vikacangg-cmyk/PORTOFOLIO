@@ -1,0 +1,1365 @@
+<!doctype html>
+
+<html lang="id" class="h-full">
+
+ <head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Portofolio Pribadi</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script src="/_sdk/element_sdk.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+
+  <style>
+
+    body {
+
+      box-sizing: border-box;
+
+    }
+
+    
+
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+
+    }
+
+    html, body {
+
+      height: 100%;
+
+      width: 100%;
+
+    }
+
+    .app-wrapper {
+
+      height: 100%;
+
+      width: 100%;
+
+      overflow-y: auto;
+
+      overflow-x: hidden;
+
+    }
+
+    /* Custom Scrollbar */
+
+    ::-webkit-scrollbar {
+
+      width: 8px;
+
+    }
+
+    ::-webkit-scrollbar-track {
+
+      background: #f5f3ef;
+
+    }
+
+    ::-webkit-scrollbar-thumb {
+
+      background: #b8a88a;
+
+      border-radius: 4px;
+
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+
+      background: #8b7355;
+
+    }
+
+    /* Animations */
+
+    @keyframes fadeInUp {
+
+      from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+      }
+
+    }
+
+    @keyframes fadeIn {
+
+      from { opacity: 0; }
+
+      to { opacity: 1; }
+
+    }
+
+    @keyframes slideInLeft {
+
+      from {
+
+        opacity: 0;
+
+        transform: translateX(-50px);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform: translateX(0);
+
+      }
+
+    }
+
+    @keyframes slideInRight {
+
+      from {
+
+        opacity: 0;
+
+        transform: translateX(50px);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform: translateX(0);
+
+      }
+
+    }
+
+    @keyframes scaleIn {
+
+      from {
+
+        opacity: 0;
+
+        transform: scale(0.8);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+      }
+
+    }
+
+    @keyframes float {
+
+      0%, 100% { transform: translateY(0px); }
+
+      50% { transform: translateY(-10px); }
+
+    }
+
+    @keyframes pulse {
+
+      0%, 100% { opacity: 1; }
+
+      50% { opacity: 0.7; }
+
+    }
+
+    @keyframes skillFill {
+
+      from { width: 0; }
+
+    }
+
+    .animate-fade-in-up {
+
+      animation: fadeInUp 0.8s ease-out forwards;
+
+    }
+
+    .animate-fade-in {
+
+      animation: fadeIn 0.6s ease-out forwards;
+
+    }
+
+    .animate-slide-left {
+
+      animation: slideInLeft 0.8s ease-out forwards;
+
+    }
+
+    .animate-slide-right {
+
+      animation: slideInRight 0.8s ease-out forwards;
+
+    }
+
+    .animate-scale-in {
+
+      animation: scaleIn 0.6s ease-out forwards;
+
+    }
+
+    .animate-float {
+
+      animation: float 3s ease-in-out infinite;
+
+    }
+
+    .delay-100 { animation-delay: 0.1s; }
+
+    .delay-200 { animation-delay: 0.2s; }
+
+    .delay-300 { animation-delay: 0.3s; }
+
+    .delay-400 { animation-delay: 0.4s; }
+
+    .delay-500 { animation-delay: 0.5s; }
+
+    .delay-600 { animation-delay: 0.6s; }
+
+    /* Skill Bar Animation */
+
+    .skill-bar {
+
+      animation: skillFill 1.5s ease-out forwards;
+
+    }
+
+    /* Hover Effects */
+
+    .card-hover {
+
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    }
+
+    .card-hover:hover {
+
+      transform: translateY(-8px);
+
+      box-shadow: 0 20px 40px rgba(139, 115, 85, 0.15);
+
+    }
+
+    .nav-link {
+
+      position: relative;
+
+      transition: color 0.3s ease;
+
+    }
+
+    .nav-link::after {
+
+      content: '';
+
+      position: absolute;
+
+      bottom: -4px;
+
+      left: 0;
+
+      width: 0;
+
+      height: 2px;
+
+      background: #8b7355;
+
+      transition: width 0.3s ease;
+
+    }
+
+    .nav-link:hover::after,
+
+    .nav-link.active::after {
+
+      width: 100%;
+
+    }
+
+    .btn-primary {
+
+      transition: all 0.3s ease;
+
+      position: relative;
+
+      overflow: hidden;
+
+    }
+
+    .btn-primary::before {
+
+      content: '';
+
+      position: absolute;
+
+      top: 0;
+
+      left: -100%;
+
+      width: 100%;
+
+      height: 100%;
+
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+
+      transition: left 0.5s ease;
+
+    }
+
+    .btn-primary:hover::before {
+
+      left: 100%;
+
+    }
+
+    /* Form Focus States */
+
+    .form-input {
+
+      transition: all 0.3s ease;
+
+    }
+
+    .form-input:focus {
+
+      outline: none;
+
+      border-color: #8b7355;
+
+      box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+
+    }
+
+    /* Profile Image Glow */
+
+    .profile-glow {
+
+      position: relative;
+
+    }
+
+    .profile-glow::before {
+
+      content: '';
+
+      position: absolute;
+
+      inset: -4px;
+
+      background: linear-gradient(45deg, #b8a88a, #8b7355, #6b5344, #b8a88a);
+
+      border-radius: 50%;
+
+      z-index: -1;
+
+      animation: pulse 2s ease-in-out infinite;
+
+    }
+
+    /* Section Divider */
+
+    .section-divider {
+
+      width: 60px;
+
+      height: 3px;
+
+      background: linear-gradient(90deg, #8b7355, #b8a88a);
+
+      border-radius: 2px;
+
+    }
+
+    /* Toast Notification */
+
+    .toast {
+
+      position: fixed;
+
+      bottom: 20px;
+
+      right: 20px;
+
+      padding: 16px 24px;
+
+      background: #8b7355;
+
+      color: white;
+
+      border-radius: 8px;
+
+      box-shadow: 0 10px 30px rgba(139, 115, 85, 0.3);
+
+      transform: translateY(100px);
+
+      opacity: 0;
+
+      transition: all 0.4s ease;
+
+      z-index: 1000;
+
+    }
+
+    .toast.show {
+
+      transform: translateY(0);
+
+      opacity: 1;
+
+    }
+
+  </style>
+
+  <style>@view-transition { navigation: auto; }</style>
+
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+
+ </head>
+
+ <body class="h-full w-full" style="background-color: #f5f3ef; color: #4a4139;">
+
+  <div class="app-wrapper"><!-- HEADER / NAVIGATION -->
+
+   <header class="sticky top-0 z-50 backdrop-blur-md" style="background-color: rgba(230, 223, 213, 0.95);">
+
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+
+     <div id="logo" class="text-xl font-semibold animate-fade-in" style="font-family: 'Playfair Display', serif; color: #6b5344;">
+
+      Vika Vakhita
+
+     </div><!-- Desktop Nav -->
+
+     <nav class="hidden md:flex gap-8"><a href="#home" class="nav-link active" style="font-family: 'Inter', sans-serif; color: #4a4139;">Home</a> <a href="#about" class="nav-link" style="font-family: 'Inter', sans-serif; color: #4a4139;">About</a> <a href="#skills" class="nav-link" style="font-family: 'Inter', sans-serif; color: #4a4139;">Skills</a> <a href="#portfolio" class="nav-link" style="font-family: 'Inter', sans-serif; color: #4a4139;">Portfolio</a> <a href="#contact" class="nav-link" style="font-family: 'Inter', sans-serif; color: #4a4139;">Contact</a>
+
+     </nav><!-- Mobile Menu Button --> <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/50 transition-colors">
+
+      <svg class="w-6 h-6" fill="none" stroke="#6b5344" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+
+      </svg></button>
+
+    </div><!-- Mobile Nav -->
+
+    <nav id="mobileNav" class="md:hidden hidden px-6 pb-4">
+
+     <div class="flex flex-col gap-4 p-4 rounded-xl" style="background-color: #f5f3ef;"><a href="#home" class="nav-link py-2" style="font-family: 'Inter', sans-serif; color: #4a4139;">Home</a> <a href="#about" class="nav-link py-2" style="font-family: 'Inter', sans-serif; color: #4a4139;">About</a> <a href="#skills" class="nav-link py-2" style="font-family: 'Inter', sans-serif; color: #4a4139;">Skills</a> <a href="#portfolio" class="nav-link py-2" style="font-family: 'Inter', sans-serif; color: #4a4139;">Portfolio</a> <a href="#contact" class="nav-link py-2" style="font-family: 'Inter', sans-serif; color: #4a4139;">Contact</a>
+
+     </div>
+
+    </nav>
+
+   </header><!-- HOME / HERO SECTION -->
+
+   <section id="home" class="min-h-screen flex items-center justify-center px-6 py-20" style="background: linear-gradient(135deg, #f5f3ef 0%, #e8e2d9 50%, #ddd5c8 100%);">
+
+    <div class="text-center max-w-3xl"><!-- Profile Image -->
+
+     <div class="mb-8 animate-scale-in">
+
+      <div class="profile-glow inline-block rounded-full p-1 animate-float"><a href="https://img.sanishtech.com/u/6b93693f976b6cb188837ebe5e8e1d23.jpg" target="_blank" rel="noopener noreferrer"> <img src="https://img.sanishtech.com/u/6b93693f976b6cb188837ebe5e8e1d23.jpg" alt="Vika Vakhita - Web Developer" loading="lazy" class="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover cursor-pointer hover:opacity-90 transition-opacity" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #b8a88a 0%, #8b7355 100%)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='👨‍💻'; this.alt='Image unavailable';"> </a>
+
+      </div>
+
+     </div><!-- Text Content -->
+
+     <p class="text-sm md:text-base uppercase tracking-widest mb-4 opacity-0 animate-fade-in-up" style="font-family: 'Inter', sans-serif; color: #8b7355; animation-delay: 0.2s;">Selamat Datang di Portofolio Saya</p>
+
+     <h1 id="heroName" class="text-4xl md:text-6xl font-bold mb-4 opacity-0 animate-fade-in-up" style="font-family: 'Playfair Display', serif; color: #4a4139; animation-delay: 0.4s;">Halo, Saya <span style="color: #8b7355;">Vika Vakhita</span></h1>
+
+     <p id="heroTitle" class="text-lg md:text-xl mb-8 opacity-0 animate-fade-in-up" style="font-family: 'Inter', sans-serif; color: #6b5344; animation-delay: 0.6s;">Pelajar | Web Developer Pemula</p><!-- CTA Buttons -->
+
+     <div class="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-in-up" style="animation-delay: 0.8s;"><button onclick="scrollToSection('portfolio')" class="btn-primary px-8 py-4 rounded-full font-medium text-white shadow-lg hover:shadow-xl transform hover:-translate-y-1" style="font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #8b7355 0%, #6b5344 100%);"> Lihat Portofolio </button> <button onclick="scrollToSection('contact')" class="px-8 py-4 rounded-full font-medium border-2 hover:bg-white/50 transition-all" style="font-family: 'Inter', sans-serif; border-color: #8b7355; color: #8b7355;"> Hubungi Saya </button>
+
+     </div><!-- Scroll Indicator -->
+
+     <div class="mt-16 animate-bounce opacity-0 animate-fade-in" style="animation-delay: 1.2s;">
+
+      <svg class="w-6 h-6 mx-auto" fill="none" stroke="#8b7355" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+
+      </svg>
+
+     </div>
+
+    </div>
+
+   </section><!-- ABOUT SECTION -->
+
+   <section id="about" class="py-20 px-6" style="background-color: #f5f3ef;">
+
+    <div class="max-w-6xl mx-auto">
+
+     <div class="grid md:grid-cols-2 gap-12 items-center"><!-- Image/Illustration Side -->
+
+      <div class="order-2 md:order-1">
+
+       <div class="relative"><a href="https://img.sanishtech.com/u/6b93693f976b6cb188837ebe5e8e1d23.jpg" target="_blank" rel="noopener noreferrer" class="block w-full aspect-square rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow"> <img src="https://img.sanishtech.com/u/6b93693f976b6cb188837ebe5e8e1d23.jpg" alt="Vika Vakhita - About Photo" loading="lazy" class="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #e8e2d9 0%, #d6cfc4 100%)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='<div class=\'text-center p-8\'><div class=\'text-8xl mb-4\'>🎯</div></div>'; this.alt='Image unavailable';"> </a> <!-- Decorative Elements -->
+
+        <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full opacity-50" style="background-color: #b8a88a;"></div>
+
+        <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full opacity-30" style="background-color: #8b7355;"></div>
+
+       </div>
+
+      </div><!-- Text Side -->
+
+      <div class="order-1 md:order-2">
+
+       <p class="text-sm uppercase tracking-widest mb-2" style="font-family: 'Inter', sans-serif; color: #8b7355;">Tentang Saya</p>
+
+       <h2 class="text-3xl md:text-4xl font-bold mb-4" style="font-family: 'Playfair Display', serif; color: #4a4139;">Passionate Web Developer</h2>
+
+       <div class="section-divider mb-6"></div>
+
+       <p id="aboutText" class="text-base md:text-lg leading-relaxed mb-6" style="font-family: 'Inter', sans-serif; color: #5a5149;">Saya adalah pelajar yang tertarik pada dunia teknologi, khususnya pengembangan website. Saya senang mempelajari HTML, CSS, dan JavaScript untuk membuat tampilan web yang menarik dan fungsional. Setiap hari saya berusaha untuk terus belajar dan mengembangkan kemampuan coding saya.</p>
+
+       <div class="grid grid-cols-2 gap-4">
+
+        <div class="p-4 rounded-xl" style="background-color: #e8e2d9;">
+
+         <p class="text-2xl font-bold" style="font-family: 'Playfair Display', serif; color: #8b7355;">2+</p>
+
+         <p class="text-sm" style="font-family: 'Inter', sans-serif; color: #6b5344;">Tahun Belajar</p>
+
+        </div>
+
+        <div class="p-4 rounded-xl" style="background-color: #e8e2d9;">
+
+         <p class="text-2xl font-bold" style="font-family: 'Playfair Display', serif; color: #8b7355;">5+</p>
+
+         <p class="text-sm" style="font-family: 'Inter', sans-serif; color: #6b5344;">Proyek Selesai</p>
+
+        </div>
+
+       </div>
+
+      </div>
+
+     </div>
+
+    </div>
+
+   </section><!-- SKILLS SECTION -->
+
+   <section id="skills" class="py-20 px-6" style="background-color: #e8e2d9;">
+
+    <div class="max-w-4xl mx-auto">
+
+     <div class="text-center mb-12">
+
+      <p class="text-sm uppercase tracking-widest mb-2" style="font-family: 'Inter', sans-serif; color: #8b7355;">Kemampuan Saya</p>
+
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" style="font-family: 'Playfair Display', serif; color: #4a4139;">Skills &amp; Keahlian</h2>
+
+      <div class="section-divider mx-auto"></div>
+
+     </div>
+
+     <div class="grid md:grid-cols-2 gap-8"><!-- Technical Skills -->
+
+      <div class="p-8 rounded-2xl card-hover" style="background-color: #f5f3ef;">
+
+       <h3 class="text-xl font-semibold mb-6 flex items-center gap-3" style="font-family: 'Playfair Display', serif; color: #6b5344;"><span class="text-2xl">💻</span> Technical Skills</h3>
+
+       <div class="space-y-5">
+
+        <div class="skill-item">
+
+         <div class="flex justify-between mb-2"><span style="font-family: 'Inter', sans-serif; color: #4a4139;">HTML</span> <span style="font-family: 'Inter', sans-serif; color: #8b7355;">90%</span>
+
+         </div>
+
+         <div class="h-3 rounded-full overflow-hidden" style="background-color: #d6cfc4;">
+
+          <div class="skill-bar h-full rounded-full" style="width: 90%; background: linear-gradient(90deg, #8b7355 0%, #b8a88a 100%);"></div>
+
+         </div>
+
+        </div>
+
+        <div class="skill-item">
+
+         <div class="flex justify-between mb-2"><span style="font-family: 'Inter', sans-serif; color: #4a4139;">CSS</span> <span style="font-family: 'Inter', sans-serif; color: #8b7355;">85%</span>
+
+         </div>
+
+         <div class="h-3 rounded-full overflow-hidden" style="background-color: #d6cfc4;">
+
+          <div class="skill-bar h-full rounded-full" style="width: 85%; background: linear-gradient(90deg, #8b7355 0%, #b8a88a 100%); animation-delay: 0.2s;"></div>
+
+         </div>
+
+        </div>
+
+        <div class="skill-item">
+
+         <div class="flex justify-between mb-2"><span style="font-family: 'Inter', sans-serif; color: #4a4139;">JavaScript</span> <span style="font-family: 'Inter', sans-serif; color: #8b7355;">70%</span>
+
+         </div>
+
+         <div class="h-3 rounded-full overflow-hidden" style="background-color: #d6cfc4;">
+
+          <div class="skill-bar h-full rounded-full" style="width: 70%; background: linear-gradient(90deg, #8b7355 0%, #b8a88a 100%); animation-delay: 0.4s;"></div>
+
+         </div>
+
+        </div>
+
+        <div class="skill-item">
+
+         <div class="flex justify-between mb-2"><span style="font-family: 'Inter', sans-serif; color: #4a4139;">Tailwind CSS</span> <span style="font-family: 'Inter', sans-serif; color: #8b7355;">75%</span>
+
+         </div>
+
+         <div class="h-3 rounded-full overflow-hidden" style="background-color: #d6cfc4;">
+
+          <div class="skill-bar h-full rounded-full" style="width: 75%; background: linear-gradient(90deg, #8b7355 0%, #b8a88a 100%); animation-delay: 0.6s;"></div>
+
+         </div>
+
+        </div>
+
+       </div>
+
+      </div><!-- Soft Skills -->
+
+      <div class="p-8 rounded-2xl card-hover" style="background-color: #f5f3ef;">
+
+       <h3 class="text-xl font-semibold mb-6 flex items-center gap-3" style="font-family: 'Playfair Display', serif; color: #6b5344;"><span class="text-2xl">🎨</span> Soft Skills</h3>
+
+       <div class="space-y-4">
+
+        <div class="flex items-center gap-4 p-4 rounded-xl transition-all hover:shadow-md" style="background-color: #e8e2d9;">
+
+         <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl" style="background-color: #8b7355;">
+
+          🎯
+
+         </div>
+
+         <div>
+
+          <p class="font-medium" style="font-family: 'Inter', sans-serif; color: #4a4139;">Problem Solving</p>
+
+          <p class="text-sm" style="font-family: 'Inter', sans-serif; color: #6b5344;">Analisis &amp; Solusi Kreatif</p>
+
+         </div>
+
+        </div>
+
+        <div class="flex items-center gap-4 p-4 rounded-xl transition-all hover:shadow-md" style="background-color: #e8e2d9;">
+
+         <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl" style="background-color: #8b7355;">
+
+          🤝
+
+         </div>
+
+         <div>
+
+          <p class="font-medium" style="font-family: 'Inter', sans-serif; color: #4a4139;">Team Work</p>
+
+          <p class="text-sm" style="font-family: 'Inter', sans-serif; color: #6b5344;">Kolaborasi &amp; Komunikasi</p>
+
+         </div>
+
+        </div>
+
+        <div class="flex items-center gap-4 p-4 rounded-xl transition-all hover:shadow-md" style="background-color: #e8e2d9;">
+
+         <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl" style="background-color: #8b7355;">
+
+          📖
+
+         </div>
+
+         <div>
+
+          <p class="font-medium" style="font-family: 'Inter', sans-serif; color: #4a4139;">Fast Learner</p>
+
+          <p class="text-sm" style="font-family: 'Inter', sans-serif; color: #6b5344;">Adaptif &amp; Cepat Belajar</p>
+
+         </div>
+
+        </div>
+
+        <div class="flex items-center gap-4 p-4 rounded-xl transition-all hover:shadow-md" style="background-color: #e8e2d9;">
+
+         <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl" style="background-color: #8b7355;">
+
+          ⏰
+
+         </div>
+
+         <div>
+
+          <p class="font-medium" style="font-family: 'Inter', sans-serif; color: #4a4139;">Time Management</p>
+
+          <p class="text-sm" style="font-family: 'Inter', sans-serif; color: #6b5344;">Efisien &amp; Terorganisir</p>
+
+         </div>
+
+        </div>
+
+       </div>
+
+      </div>
+
+     </div>
+
+    </div>
+
+   </section><!-- PORTFOLIO SECTION -->
+
+   <section id="portfolio" class="py-20 px-6" style="background-color: #f5f3ef;">
+
+    <div class="max-w-6xl mx-auto">
+
+     <div class="text-center mb-12">
+
+      <p class="text-sm uppercase tracking-widest mb-2" style="font-family: 'Inter', sans-serif; color: #8b7355;">Karya Saya</p>
+
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" style="font-family: 'Playfair Display', serif; color: #4a4139;">Portfolio Projects</h2>
+
+      <div class="section-divider mx-auto"></div>
+
+     </div>
+
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Project Card 1 -->
+
+      <div class="card-hover rounded-2xl overflow-hidden shadow-lg" style="background-color: #ffffff;">
+
+       <div class="aspect-video flex items-center justify-center" style="background: linear-gradient(135deg, #8b7355 0%, #b8a88a 100%);"><span class="text-6xl">🌐</span>
+
+       </div>
+
+       <div class="p-6">
+
+        <div class="flex gap-2 mb-3"><span class="px-3 py-1 rounded-full text-xs" style="background-color: #e8e2d9; color: #6b5344; font-family: 'Inter', sans-serif;">HTML</span> <span class="px-3 py-1 rounded-full text-xs" style="background-color: #e8e2d9; color: #6b5344; font-family: 'Inter', sans-serif;">CSS</span> <span class="px-3 py-1 rounded-full text-xs" style="background-color: #e8e2d9; color: #6b5344; font-family: 'Inter', sans-serif;">JS</span>
+
+        </div>
+
+        <h3 class="text-xl font-semibold mb-2" style="font-family: 'Playfair Display', serif; color: #4a4139;">Website Portofolio</h3>
+
+        <p class="text-sm mb-4" style="font-family: 'Inter', sans-serif; color: #6b5344;">Website pribadi menggunakan HTML, CSS, dan JavaScript dengan desain modern minimalis.</p><a href="#" class="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:gap-3" style="color: #8b7355; font-family: 'Inter', sans-serif;"> Lihat Detail 
+
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+
+         </svg></a>
+
+       </div>
+
+      </div><!-- Project Card 2 -->
+
+      <div class="card-hover rounded-2xl overflow-hidden shadow-lg" style="background-color: #ffffff;">
+
+       <div class="aspect-video flex items-center justify-center" style="background: linear-gradient(135deg, #6b5344 0%, #8b7355 100%);"><span class="text-6xl">📱</span>
+
+       </div>
+
+       <div class="p-6">
+
+        <div class="flex gap-2 mb-3"><span class="px-3 py-1 rounded-full text-xs" style="background-color: #e8e2d9; color: #6b5344; font-family: 'Inter', sans-serif;">Responsive</span> <span class="px-3 py-1 rounded-full text-xs" style="background-color: #e8e2d9; color: #6b5344; font-family: 'Inter', sans-serif;">Tailwind</span>
+
+        </div>
+
+        <h3 class="text-xl font-semibold mb-2" style="font-family: 'Playfair Display', serif; color: #4a4139;">Landing Page</h3>
+
+        <p class="text-sm mb-4" style="font-family: 'Inter', sans-serif; color: #6b5344;">Desain halaman promosi dengan tampilan modern dan responsif untuk berbagai device.</p><a href="#" class="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:gap-3" style="color: #8b7355; font-family: 'Inter', sans-serif;"> Lihat Detail 
+
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+
+         </svg></a>
+
+       </div>
+
+      </div><!-- Project Card 3 -->
+
+      <div class="card-hover rounded-2xl overflow-hidden shadow-lg" style="background-color: #ffffff;">
+
+       <div class="aspect-video flex items-center justify-center" style="background: linear-gradient(135deg, #b8a88a 0%, #d6cfc4 100%);"><span class="text-6xl">🛒</span>
+
+       </div>
+
+       <div class="p-6">
+
+        <div class="flex gap-2 mb-3"><span class="px-3 py-1 rounded-full text-xs" style="background-color: #e8e2d9; color: #6b5344; font-family: 'Inter', sans-serif;">E-commerce</span> <span class="px-3 py-1 rounded-full text-xs" style="background-color: #e8e2d9; color: #6b5344; font-family: 'Inter', sans-serif;">UI/UX</span>
+
+        </div>
+
+        <h3 class="text-xl font-semibold mb-2" style="font-family: 'Playfair Display', serif; color: #4a4139;">Toko Online UI</h3>
+
+        <p class="text-sm mb-4" style="font-family: 'Inter', sans-serif; color: #6b5344;">Desain tampilan toko online dengan fokus pada user experience yang baik.</p><a href="#" class="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:gap-3" style="color: #8b7355; font-family: 'Inter', sans-serif;"> Lihat Detail 
+
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+
+         </svg></a>
+
+       </div>
+
+      </div>
+
+     </div>
+
+    </div>
+
+   </section><!-- CONTACT SECTION -->
+
+   <section id="contact" class="py-20 px-6" style="background: linear-gradient(135deg, #e8e2d9 0%, #d6cfc4 100%);">
+
+    <div class="max-w-4xl mx-auto">
+
+     <div class="text-center mb-12">
+
+      <p class="text-sm uppercase tracking-widest mb-2" style="font-family: 'Inter', sans-serif; color: #8b7355;">Mari Terhubung</p>
+
+      <h2 class="text-3xl md:text-4xl font-bold mb-4" style="font-family: 'Playfair Display', serif; color: #4a4139;">Hubungi Saya</h2>
+
+      <div class="section-divider mx-auto"></div>
+
+     </div>
+
+     <div class="grid md:grid-cols-2 gap-12"><!-- Contact Info -->
+
+      <div>
+
+       <h3 class="text-xl font-semibold mb-6" style="font-family: 'Playfair Display', serif; color: #6b5344;">Info Kontak</h3>
+
+       <div class="space-y-4">
+
+        <div class="flex items-center gap-4 p-4 rounded-xl card-hover" style="background-color: #f5f3ef;">
+
+         <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #8b7355;"><span class="text-white text-xl">📧</span>
+
+         </div>
+
+         <div>
+
+          <p class="text-sm" style="font-family: 'Inter', sans-serif; color: #8b7355;">Email</p>
+
+          <p class="font-medium" style="font-family: 'Inter', sans-serif; color: #4a4139;">vikavakhita@email.com</p>
+
+         </div>
+
+        </div>
+
+        <div class="flex items-center gap-4 p-4 rounded-xl card-hover" style="background-color: #f5f3ef;">
+
+         <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #8b7355;"><span class="text-white text-xl">📍</span>
+
+         </div>
+
+         <div>
+
+          <p class="text-sm" style="font-family: 'Inter', sans-serif; color: #8b7355;">Lokasi</p>
+
+          <p class="font-medium" style="font-family: 'Inter', sans-serif; color: #4a4139;">Indonesia</p>
+
+         </div>
+
+        </div>
+
+        <div class="flex items-center gap-4 p-4 rounded-xl card-hover" style="background-color: #f5f3ef;">
+
+         <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #8b7355;"><span class="text-white text-xl">🔗</span>
+
+         </div>
+
+         <div>
+
+          <p class="text-sm" style="font-family: 'Inter', sans-serif; color: #8b7355;">GitHub</p>
+
+          <p class="font-medium" style="font-family: 'Inter', sans-serif; color: #4a4139;">github.com/vikavakhita</p>
+
+         </div>
+
+        </div>
+
+       </div>
+
+      </div><!-- Contact Form -->
+
+      <div>
+
+       <form id="contactForm" class="space-y-4">
+
+        <div><label class="block text-sm mb-2" for="name" style="font-family: 'Inter', sans-serif; color: #6b5344;">Nama Lengkap</label> <input type="text" id="name" class="form-input w-full px-4 py-3 rounded-xl border-2 transition-all" placeholder="Masukkan nama Anda" required style="background-color: #f5f3ef; border-color: #d6cfc4; font-family: 'Inter', sans-serif; color: #4a4139;">
+
+        </div>
+
+        <div><label class="block text-sm mb-2" for="email" style="font-family: 'Inter', sans-serif; color: #6b5344;">Email</label> <input type="email" id="email" class="form-input w-full px-4 py-3 rounded-xl border-2 transition-all" placeholder="email@contoh.com" required style="background-color: #f5f3ef; border-color: #d6cfc4; font-family: 'Inter', sans-serif; color: #4a4139;">
+
+        </div>
+
+        <div><label class="block text-sm mb-2" for="message" style="font-family: 'Inter', sans-serif; color: #6b5344;">Pesan</label> <textarea id="message" rows="4" class="form-input w-full px-4 py-3 rounded-xl border-2 transition-all resize-none" placeholder="Tulis pesan Anda di sini..." required style="background-color: #f5f3ef; border-color: #d6cfc4; font-family: 'Inter', sans-serif; color: #4a4139;"></textarea>
+
+        </div><button type="submit" class="btn-primary w-full py-4 rounded-xl font-medium text-white shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all" style="font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #8b7355 0%, #6b5344 100%);"> Kirim Pesan 📨 </button>
+
+       </form>
+
+      </div>
+
+     </div>
+
+    </div>
+
+   </section><!-- FOOTER -->
+
+   <footer class="py-8 px-6" style="background-color: #4a4139;">
+
+    <div class="max-w-6xl mx-auto">
+
+     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+
+      <p id="footerText" class="text-sm" style="font-family: 'Inter', sans-serif; color: #b8a88a;">© 2026 Vika Vakhita | Portofolio Pribadi</p>
+
+      <div class="flex gap-4"><a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background-color: #6b5344;" aria-label="GitHub"> <span class="text-lg">💻</span> </a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background-color: #6b5344;" aria-label="LinkedIn"> <span class="text-lg">💼</span> </a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background-color: #6b5344;" aria-label="Instagram"> <span class="text-lg">📷</span> </a>
+
+      </div>
+
+     </div>
+
+    </div>
+
+   </footer><!-- Toast Notification -->
+
+   <div id="toast" class="toast">
+
+    Pesan berhasil dikirim! ✨
+
+   </div>
+
+  </div>
+
+  <script>
+
+    // Default Configuration
+
+    const defaultConfig = {
+
+      profile_name: 'Vika Vakhita',
+
+      profile_title: 'Pelajar | Web Developer Pemula',
+
+      about_text: 'Saya adalah pelajar yang tertarik pada dunia teknologi, khususnya pengembangan website. Saya senang mempelajari HTML, CSS, dan JavaScript untuk membuat tampilan web yang menarik dan fungsional. Setiap hari saya berusaha untuk terus belajar dan mengembangkan kemampuan coding saya.',
+
+      footer_text: '© 2026 Vika Vakhita | Portofolio Pribadi',
+
+      background_color: '#f5f3ef',
+
+      surface_color: '#e8e2d9',
+
+      text_color: '#4a4139',
+
+      primary_color: '#8b7355',
+
+      secondary_color: '#6b5344'
+
+    };
+
+    let config = { ...defaultConfig };
+
+    // Scroll to Section Function
+
+    function scrollToSection(sectionId) {
+
+      const section = document.getElementById(sectionId);
+
+      if (section) {
+
+        section.scrollIntoView({ behavior: 'smooth' });
+
+      }
+
+    }
+
+    // Mobile Menu Toggle
+
+    const menuBtn = document.getElementById('menuBtn');
+
+    const mobileNav = document.getElementById('mobileNav');
+
+    
+
+    if (menuBtn && mobileNav) {
+
+      menuBtn.addEventListener('click', () => {
+
+        mobileNav.classList.toggle('hidden');
+
+      });
+
+    }
+
+    // Close mobile menu when clicking a link
+
+    document.querySelectorAll('#mobileNav a').forEach(link => {
+
+      link.addEventListener('click', () => {
+
+        mobileNav.classList.add('hidden');
+
+      });
+
+    });
+
+    // Active Nav Link on Scroll
+
+    const sections = document.querySelectorAll('section');
+
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+
+      let current = '';
+
+      sections.forEach(section => {
+
+        const sectionTop = section.offsetTop;
+
+        const sectionHeight = section.clientHeight;
+
+        if (scrollY >= sectionTop - 200) {
+
+          current = section.getAttribute('id');
+
+        }
+
+      });
+
+      navLinks.forEach(link => {
+
+        link.classList.remove('active');
+
+        if (link.getAttribute('href') === `#${current}`) {
+
+          link.classList.add('active');
+
+        }
+
+      });
+
+    });
+
+    // Contact Form Handler
+
+    const contactForm = document.getElementById('contactForm');
+
+    const toast = document.getElementById('toast');
+
+    if (contactForm) {
+
+      contactForm.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+
+        
+
+        // Show toast notification
+
+        toast.classList.add('show');
+
+        
+
+        // Reset form
+
+        contactForm.reset();
+
+        
+
+        // Hide toast after 3 seconds
+
+        setTimeout(() => {
+
+          toast.classList.remove('show');
+
+        }, 3000);
+
+      });
+
+    }
+
+    // Intersection Observer for Animations
+
+    const observerOptions = {
+
+      threshold: 0.1,
+
+      rootMargin: '0px 0px -50px 0px'
+
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+
+      entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+          entry.target.style.opacity = '1';
+
+          entry.target.style.transform = 'translateY(0)';
+
+        }
+
+      });
+
+    }, observerOptions);
+
+    document.querySelectorAll('.card-hover').forEach(card => {
+
+      card.style.opacity = '0';
+
+      card.style.transform = 'translateY(20px)';
+
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+      observer.observe(card);
+
+    });
+
+    // onConfigChange Function - Updates UI based on config
+
+    async function onConfigChange(newConfig) {
+
+      // Update hero name
+
+      const heroName = document.getElementById('heroName');
+
+      if (heroName) {
+
+        heroName.innerHTML = `Halo, Saya <span style="color: ${newConfig.primary_color || defaultConfig.primary_color};">${newConfig.profile_name || defaultConfig.profile_name}</span>`;
+
+      }
+
+      // Update logo
+
+      const logo = document.getElementById('logo');
+
+      if (logo) {
+
+        logo.textContent = newConfig.profile_name || defaultConfig.profile_name;
+
+        logo.style.color = newConfig.secondary_color || defaultConfig.secondary_color;
+
+      }
+
+      // Update hero title
+
+      const heroTitle = document.getElementById('heroTitle');
+
+      if (heroTitle) {
+
+        heroTitle.textContent = newConfig.profile_title || defaultConfig.profile_title;
+
+      }
+
+      // Update about text
+
+      const aboutText = document.getElementById('aboutText');
+
+      if (aboutText) {
+
+        aboutText.textContent = newConfig.about_text || defaultConfig.about_text;
+
+      }
+
+      // Update footer text
+
+      const footerText = document.getElementById('footerText');
+
+      if (footerText) {
+
+        footerText.textContent = newConfig.footer_text || defaultConfig.footer_text;
+
+      }
+
+    }
+
+    // Map to Capabilities - Exposes colors for editing
+
+    function mapToCapabilities(config) {
+
+      return {
+
+        recolorables: [
+
+          {
+
+            get: () => config.background_color || defaultConfig.background_color,
+
+            set: (value) => {
+
+              config.background_color = value;
+
+              if (window.elementSdk) {
+
+                window.elementSdk.setConfig({ background_color: value });
+
+              }
+
+            }
+
+          },
+
+          {
+
+            get: () => config.surface_color || defaultConfig.surface_color,
+
+            set: (value) => {
+
+              config.surface_color = value;
+
+              if (window.elementSdk) {
+
+                window.elementSdk.setConfig({ surface_color: value });
+
+              }
+
+            }
+
+          },
+
+          {
+
+            get: () => config.text_color || defaultConfig.text_color,
+
+            set: (value) => {
+
+              config.text_color = value;
+
+              if (window.elementSdk) {
+
+                window.elementSdk.setConfig({ text_color: value });
+
+              }
+
+            }
+
+          },
+
+          {
+
+            get: () => config.primary_color || defaultConfig.primary_color,
+
+            set: (value) => {
+
+              config.primary_color = value;
+
+              if (window.elementSdk) {
+
+                window.elementSdk.setConfig({ primary_color: value });
+
+              }
+
+            }
+
+          },
+
+          {
+
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+
+            set: (value) => {
+
+              config.secondary_color = value;
+
+              if (window.elementSdk) {
+
+                window.elementSdk.setConfig({ secondary_color: value });
+
+              }
+
+            }
+
+          }
+
+        ],
+
+        borderables: [],
+
+        fontEditable: undefined,
+
+        fontSizeable: undefined
+
+      };
+
+    }
+
+    // Map to Edit Panel Values
+
+    function mapToEditPanelValues(config) {
+
+      return new Map([
+
+        ['profile_name', config.profile_name || defaultConfig.profile_name],
+
+        ['profile_title', config.profile_title || defaultConfig.profile_title],
+
+        ['about_text', config.about_text || defaultConfig.about_text],
+
+        ['footer_text', config.footer_text || defaultConfig.footer_text]
+
+      ]);
+
+    }
+
+    // Initialize Element SDK
+
+    if (window.elementSdk) {
+
+      window.elementSdk.init({
+
+        defaultConfig,
+
+        onConfigChange,
+
+        mapToCapabilities,
+
+        mapToEditPanelValues
+
+      });
+
+    } else {
+
+      // If SDK not available, apply default config
+
+      onConfigChange(defaultConfig);
+
+    }
+
+  </script>
+
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c87e577776cd210',t:'MTc3MDE4NDI4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+
+</html>
